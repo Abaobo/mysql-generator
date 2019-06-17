@@ -7,7 +7,7 @@
     <artifactId>mybatis-generator-abaobo-plugin</artifactId>
     <version>1.0.4</version>
 
-    <name>mybatis-generator-plugin</name>
+    <name>mybatis-generator-abaobo-plugin</name>
     <description>mybatis-generator-plugin.</description>
 
 
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.2</version>
+            <version>1.3.7</version>
         </dependency>
     </dependencies>
 </project>
