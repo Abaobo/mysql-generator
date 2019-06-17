@@ -144,7 +144,7 @@ public class MySQLPlugin extends PluginAdapter {
         ifSkipLockedFalseElement.addElement(new TextElement("for update"));
         ifForUpdateTrueElement.addElement(ifSkipLockedFalseElement);
 
-        element.addElement(ifLimitNotNullElement);
+        element.addElement(ifForUpdateTrueElement);
 
         return true;
     }
