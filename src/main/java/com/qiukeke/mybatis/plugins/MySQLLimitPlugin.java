@@ -24,6 +24,8 @@ public class MySQLLimitPlugin extends PluginAdapter {
 
         PrimitiveTypeWrapper integerWrapper = FullyQualifiedJavaType.getIntInstance().getPrimitiveTypeWrapper();
 
+        PrimitiveTypeWrapper booleanWrapper = FullyQualifiedJavaType.getBooleanPrimitiveInstance().getPrimitiveTypeWrapper();
+
         Field limit = new Field();
         limit.setName("limit");
         limit.setVisibility(JavaVisibility.PRIVATE);
@@ -64,6 +66,46 @@ public class MySQLLimitPlugin extends PluginAdapter {
         getOffset.addBodyLine("return offset;");
         topLevelClass.addMethod(getOffset);
 
+        Field forUpdate = new Field();
+        offset.setName("forUpdate");
+        offset.setVisibility(JavaVisibility.PRIVATE);
+        offset.setType(booleanWrapper);
+        topLevelClass.addField(forUpdate);
+
+        Method setForUpdate = new Method();
+        setOffset.setVisibility(JavaVisibility.PUBLIC);
+        setOffset.setName("setForUpdate");
+        setOffset.addParameter(new Parameter(booleanWrapper, "forUpdate"));
+        setOffset.addBodyLine("this.forUpdate = forUpdate;");
+        topLevelClass.addMethod(setForUpdate);
+
+        Method getForUpdate = new Method();
+        getOffset.setVisibility(JavaVisibility.PUBLIC);
+        getOffset.setReturnType(booleanWrapper);
+        getOffset.setName("getForUpdate");
+        getOffset.addBodyLine("return forUpdate;");
+        topLevelClass.addMethod(getForUpdate);
+
+        Field skipLocked = new Field();
+        offset.setName("skipLocked");
+        offset.setVisibility(JavaVisibility.PRIVATE);
+        offset.setType(booleanWrapper);
+        topLevelClass.addField(skipLocked);
+
+        Method setSkipLocked = new Method();
+        setOffset.setVisibility(JavaVisibility.PUBLIC);
+        setOffset.setName("setSkipLocked");
+        setOffset.addParameter(new Parameter(booleanWrapper, "skipLocked"));
+        setOffset.addBodyLine("this.skipLocked = skipLocked;");
+        topLevelClass.addMethod(setSkipLocked);
+
+        Method getSkipLocked = new Method();
+        getOffset.setVisibility(JavaVisibility.PUBLIC);
+        getOffset.setReturnType(booleanWrapper);
+        getOffset.setName("getSkipLocked");
+        getOffset.addBodyLine("return skipLocked;");
+        topLevelClass.addMethod(getSkipLocked);
+
         return true;
     }
 
@@ -89,7 +131,29 @@ public class MySQLLimitPlugin extends PluginAdapter {
 
         element.addElement(ifLimitNotNullElement);
 
+        XmlElement ifForUpdateTrueElement = new XmlElement("if");
+        ifForUpdateTrueElement.addAttribute(new Attribute("test", "forUpdate != null and forUpdate == true"));
+
+        XmlElement ifSkipLockedTrueElement = new XmlElement("if");
+        ifSkipLockedTrueElement.addAttribute(new Attribute("test", "skipLocked != null and skipLocked == true"));
+        ifSkipLockedTrueElement.addElement(new TextElement("for update skip locked"));
+        ifForUpdateTrueElement.addElement(ifSkipLockedTrueElement);
+
+        XmlElement ifSkipLockedFalseElement = new XmlElement("if");
+        ifSkipLockedFalseElement.addAttribute(new Attribute("test", "skipLocked == null or skipLocked != true"));
+        ifSkipLockedFalseElement.addElement(new TextElement("for update"));
+        ifForUpdateTrueElement.addElement(ifSkipLockedFalseElement);
+
+        element.addElement(ifLimitNotNullElement);
+
         return true;
+    }
+
+
+    @Override
+    public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(XmlElement element,
+                                                                  IntrospectedTable introspectedTable) {
+       return sqlMapSelectByExampleWithoutBLOBsElementGenerated(element, introspectedTable);
     }
 
     @Override
