@@ -67,43 +67,43 @@ public class MySQLPlugin extends PluginAdapter {
         topLevelClass.addMethod(getOffset);
 
         Field forUpdate = new Field();
-        offset.setName("forUpdate");
-        offset.setVisibility(JavaVisibility.PRIVATE);
-        offset.setType(booleanWrapper);
+        forUpdate.setName("forUpdate");
+        forUpdate.setVisibility(JavaVisibility.PRIVATE);
+        forUpdate.setType(booleanWrapper);
         topLevelClass.addField(forUpdate);
 
         Method setForUpdate = new Method();
-        setOffset.setVisibility(JavaVisibility.PUBLIC);
-        setOffset.setName("setForUpdate");
-        setOffset.addParameter(new Parameter(booleanWrapper, "forUpdate"));
-        setOffset.addBodyLine("this.forUpdate = forUpdate;");
+        setForUpdate.setVisibility(JavaVisibility.PUBLIC);
+        setForUpdate.setName("setForUpdate");
+        setForUpdate.addParameter(new Parameter(booleanWrapper, "forUpdate"));
+        setForUpdate.addBodyLine("this.forUpdate = forUpdate;");
         topLevelClass.addMethod(setForUpdate);
 
         Method getForUpdate = new Method();
-        getOffset.setVisibility(JavaVisibility.PUBLIC);
-        getOffset.setReturnType(booleanWrapper);
-        getOffset.setName("getForUpdate");
-        getOffset.addBodyLine("return forUpdate;");
+        getForUpdate.setVisibility(JavaVisibility.PUBLIC);
+        getForUpdate.setReturnType(booleanWrapper);
+        getForUpdate.setName("getForUpdate");
+        getForUpdate.addBodyLine("return forUpdate;");
         topLevelClass.addMethod(getForUpdate);
 
         Field skipLocked = new Field();
-        offset.setName("skipLocked");
-        offset.setVisibility(JavaVisibility.PRIVATE);
-        offset.setType(booleanWrapper);
+        skipLocked.setName("skipLocked");
+        skipLocked.setVisibility(JavaVisibility.PRIVATE);
+        skipLocked.setType(booleanWrapper);
         topLevelClass.addField(skipLocked);
 
         Method setSkipLocked = new Method();
-        setOffset.setVisibility(JavaVisibility.PUBLIC);
-        setOffset.setName("setSkipLocked");
-        setOffset.addParameter(new Parameter(booleanWrapper, "skipLocked"));
-        setOffset.addBodyLine("this.skipLocked = skipLocked;");
+        setSkipLocked.setVisibility(JavaVisibility.PUBLIC);
+        setSkipLocked.setName("setSkipLocked");
+        setSkipLocked.addParameter(new Parameter(booleanWrapper, "skipLocked"));
+        setSkipLocked.addBodyLine("this.skipLocked = skipLocked;");
         topLevelClass.addMethod(setSkipLocked);
 
         Method getSkipLocked = new Method();
-        getOffset.setVisibility(JavaVisibility.PUBLIC);
-        getOffset.setReturnType(booleanWrapper);
-        getOffset.setName("getSkipLocked");
-        getOffset.addBodyLine("return skipLocked;");
+        getSkipLocked.setVisibility(JavaVisibility.PUBLIC);
+        getSkipLocked.setReturnType(booleanWrapper);
+        getSkipLocked.setName("getSkipLocked");
+        getSkipLocked.addBodyLine("return skipLocked;");
         topLevelClass.addMethod(getSkipLocked);
 
         return true;
