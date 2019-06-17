@@ -1,5 +1,5 @@
 
-package com.qiukeke.mybatis.plugins;
+package com.abaobo.mybatis.plugins;
 
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -10,7 +10,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 
 import java.util.List;
 
-public class MySQLLimitPlugin extends PluginAdapter {
+public class MySQLPlugin extends PluginAdapter {
 
     public boolean validate(List<String> list) {
         return true;

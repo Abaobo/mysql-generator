@@ -14,12 +14,12 @@ Modified as follows:
 
 ## Usage
 
-Add the plugin `<plugin type="com.qiukeke.mybatis.plugins.MySQLLimitPlugin"></plugin>` into MyBatis Generator configuration file.
+Add the plugin `<plugin type="MySQLLimitPlugin"></plugin>` into MyBatis Generator configuration file.
 
 ```
 <generatorConfiguration>
     <context id="mysqlgenerator" targetRuntime="MyBatis3">
-    	<plugin type="com.qiukeke.mybatis.plugins.MySQLLimitPlugin"></plugin>
+    	<plugin type="MySQLLimitPlugin"></plugin>
     	...
     </context>
 </generatorConfiguration>
